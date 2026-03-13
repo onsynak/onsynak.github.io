@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onsynak — Photographe Paris</title>
+  <meta name="description" content="Photographe à Paris. Shootings solo, couple, grossesse, famille, enfant, EVJF et mariage. Des instants vrais, des émotions capturées." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8cf8a;
+      --dark: #0e0e0e;
+      --dark2: #161616;
+      --dark3: #1e1e1e;
+      --muted: #666;
+      --light: #f5f0e8;
+      --border: rgba(255,255,255,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--dark);
+      color: var(--light);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .nav-links { display: flex; gap: 36px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .nav-links a:hover { color: var(--light); transition: color 0.2s; }
+    .nav-cta {
+      padding: 9px 22px;
+      border: 0.5px solid var(--gold);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,168,76,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-label {
+      font-size: 11px; letter-spacing: 6px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 10vw, 120px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero-sub {
+      font-size: 15px; color: var(--muted); max-width: 480px;
+      margin: 0 auto 48px;
+      font-style: italic;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+    .btn-primary {
+      padding: 14px 32px; border-radius: 999px;
+      background: var(--gold); color: var(--dark);
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      font-family: 'Jost', sans-serif; font-weight: 500;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline {
+      padding: 14px 32px; border-radius: 999px;
+      border: 0.5px solid rgba(255,255,255,0.3); color: var(--light);
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      transition: all 0.2s; background: transparent;
+    }
+    .btn-outline:hover { border-color: var(--light); }
+    .scroll-hint {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted);
+      animation: fadeUp 1.2s 0.6s ease both;
+    }
+    .scroll-line {
+      width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollAnim 1.8s ease-in-out infinite;
+    }
+
+    /* SECTION TITLES */
+    .section { padding: 100px 48px; max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 300; font-style: italic;
+      margin-bottom: 48px;
+    }
+
+    /* FILTERS */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+    .filter-btn {
+      padding: 7px 18px; border-radius: 999px;
+      border: 0.5px solid var(--border);
+      background: transparent; color: var(--muted);
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; font-family: 'Jost', sans-serif;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: rgba(255,255,255,0.25); color: var(--light); }
+    .filter-btn.active { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+    /* CARDS */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .card {
+      background: var(--dark2);
+      border: 0.5px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201,168,76,0.4);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    }
+    .card-tag {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 18px; width: fit-content;
+    }
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 300; font-style: italic;
+      margin-bottom: 6px;
+    }
+    .card-tagline {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+    }
+    .card-desc { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; flex: 1; }
+    .card-includes { margin-bottom: 20px; }
+    .card-include {
+      font-size: 12px; color: #aaa;
+      padding: 4px 0; display: flex; align-items: center; gap: 8px;
+    }
+    .include-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .card-details {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      background: var(--dark3); border-radius: 12px;
+      padding: 18px; margin-bottom: 24px;
+      border: 0.5px solid var(--border);
+    }
+    .detail-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #555; margin-bottom: 3px; }
+    .detail-val { font-size: 13px; color: #ccc; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .card-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px; font-weight: 300; color: var(--gold);
+    }
+    .card-btn {
+      padding: 11px 22px; border-radius: 999px;
+      border: 0.5px solid var(--gold); color: var(--gold);
+      background: transparent; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; font-family: 'Jost', sans-serif;
+      transition: all 0.2s;
+    }
+    .card-btn:hover { background: var(--gold); color: var(--dark); }
+    .featured-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 4px;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      background: rgba(201,168,76,0.15); color: var(--gold);
+      border: 0.5px solid rgba(201,168,76,0.3);
+      margin-bottom: 10px;
+    }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 0.5px solid var(--border); margin: 0 48px; }
+
+    /* INSTAGRAM */
+    .insta-section { padding: 100px 48px; text-align: center; }
+    .insta-link {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 16px 32px; border-radius: 999px;
+      border: 0.5px solid var(--border);
+      font-size: 13px; letter-spacing: 1px;
+      transition: all 0.2s; margin-top: 24px;
+    }
+    .insta-link:hover { border-color: var(--gold); color: var(--gold); }
+    .insta-icon { font-size: 20px; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-info p { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 24px; font-style: italic; }
+    .contact-info .policy-box {
+      background: var(--dark2); border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 20px 24px; margin-top: 24px;
+    }
+    .contact-info .policy-box h4 {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .contact-info .policy-box p { font-size: 13px; color: var(--muted); margin: 0; font-style: normal; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 14px 18px;
+      background: var(--dark2); border: 0.5px solid var(--border);
+      border-radius: 10px; color: var(--light);
+      font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300;
+      transition: border-color 0.2s; outline: none;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: rgba(201,168,76,0.5);
+    }
+    .form-group select option { background: #1e1e1e; }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      width: 100%; padding: 16px; border-radius: 999px;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+    .form-success {
+      display: none; text-align: center; padding: 32px;
+      background: var(--dark2); border-radius: 12px;
+      border: 0.5px solid rgba(201,168,76,0.3);
+    }
+    .form-success p { color: var(--gold); font-style: italic; font-size: 15px; }
+
+    /* MENTIONS LÉGALES */
+    .mentions { padding: 80px 48px; max-width: 800px; margin: 0 auto; display: none; }
+    .mentions.visible { display: block; }
+    .mentions h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-style: italic; margin-bottom: 32px; }
+    .mentions h3 { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin: 28px 0 10px; }
+    .mentions p { font-size: 14px; color: var(--muted); line-height: 1.9; }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: #444; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 20px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #444; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--muted); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollAnim {
+      0%, 100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+      50% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
+    }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .section { padding: 70px 24px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .insta-section { padding: 60px 24px; }
+      footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+      .divider { margin: 0 24px; }
+      .mentions { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">onsynak</div>
+  <div class="nav-links">
+    <a href="#packs">Packs</a>
+    <a href="#contact">Contact</a>
+    <a href="#" onclick="toggleMentions(event)">Mentions légales</a>
+  </div>
+  <a href="#contact" class="nav-cta">Réserver</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Photographe — Paris & Île-de-France</div>
+  <h1 class="hero-title">onsynak</h1>
+  <p class="hero-sub">Des instants vrais. Des émotions capturées.<br>Des souvenirs qui durent toute une vie.</p>
+  <div class="hero-btns">
+    <a href="#packs" class="btn-primary">Voir les packs</a>
+    <a href="#contact" class="btn-outline">Réserver un shooting</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PACKS -->
+<section id="packs" style="padding: 100px 48px; max-width: 1280px; margin: 0 auto;">
+  <div class="reveal">
+    <div class="section-label">Mes offres</div>
+    <h2 class="section-title">Choisissez votre shooting</h2>
+  </div>
+  <div class="filters reveal" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<hr class="divider" />
+
+<!-- INSTAGRAM -->
+<div class="insta-section reveal">
+  <div class="section-label" style="text-align:center">Retrouvez mon univers</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(28px,4vw,44px);font-weight:300;margin-bottom:8px;">Suivez-moi sur Instagram</h2>
+  <p style="font-size:14px;color:var(--muted);font-style:italic;margin-bottom:4px;">Découvrez mes derniers shootings, coulisses et inspirations</p>
+  <a href="https://instagram.com/onsynak" target="_blank" class="insta-link">
+    <span class="insta-icon">◈</span>
+    <span>@onsynak</span>
+    <span style="font-size:12px;color:var(--muted);">→</span>
+  </a>
+</div>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact" style="padding: 100px 48px; max-width: 1280px; margin: 0 auto;">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Parlons de votre projet</div>
+      <h2 class="section-title" style="margin-bottom:24px;">Réservez votre séance</h2>
+      <p>Chaque shooting est une aventure unique. Dites-moi tout sur votre projet et je reviens vers vous sous 48h pour organiser ensemble ce moment inoubliable.</p>
+      <p>📍 Paris & Proche Banlieue<br>📸 Disponible 7j/7</p>
+      <div class="policy-box">
+        <h4>Politique d'annulation</h4>
+        <p>Toute annulation doit être effectuée <strong style="color:#ccc;">au moins 48h avant la séance</strong>. Passé ce délai, 50% du montant total reste dû.</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <form id="contactForm" action="https://formspree.io/f/xyzabcde" method="POST">
+        <div class="form-group">
+          <label>Votre prénom</label>
+          <input type="text" name="prenom" placeholder="Marie" required />
+        </div>
+        <div class="form-group">
+          <label>Votre email</label>
+          <input type="email" name="email" placeholder="marie@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Pack souhaité</label>
+          <select name="pack" required>
+            <option value="" disabled selected>Choisissez un pack…</option>
+            <option>I'm the Star — 150€</option>
+            <option>In Love — 200€</option>
+            <option>I'm Waiting For You — 150€</option>
+            <option>EVJF — 250€</option>
+            <option>Angel — 250€</option>
+            <option>We Are Family — 200€</option>
+            <option>Wedding Day Light — 800€</option>
+            <option>Wedding Day Full — 1500€</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date souhaitée</label>
+          <input type="date" name="date" />
+        </div>
+        <div class="form-group">
+          <label>Message (optionnel)</label>
+          <textarea name="message" placeholder="Parlez-moi de votre projet, vos envies, le lieu idéal…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Envoyer ma demande →</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <p>✦ Merci ! Je reviens vers vous très vite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTIONS LÉGALES -->
+<div id="mentions" class="mentions">
+  <h2>Mentions légales</h2>
+
+  <h3>Éditeur du site</h3>
+  <p>Onsynak — Photographe indépendante<br>
+  Paris, France<br>
+  Contact : via le formulaire de contact du site</p>
+
+  <h3>Hébergement</h3>
+  <p>Ce site est hébergé par GitHub Pages — GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+
+  <h3>Propriété intellectuelle</h3>
+  <p>L'ensemble du contenu de ce site (textes, photographies, visuels) est la propriété exclusive d'Onsynak. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
+
+  <h3>Données personnelles</h3>
+  <p>Les informations collectées via le formulaire de contact sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni vendues, ni transmises à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données.</p>
+
+  <h3>Cookies</h3>
+  <p>Ce site n'utilise pas de cookies de traçage ou publicitaires.</p>
+
+  <h3>Responsabilité</h3>
+  <p>Onsynak s'efforce d'assurer l'exactitude des informations diffusées sur ce site, mais ne saurait être tenu responsable d'éventuelles erreurs ou omissions.</p>
+
+  <div style="margin-top:40px;">
+    <button class="btn-outline" onclick="toggleMentions(event)" style="font-size:12px;padding:12px 24px;cursor:pointer;">← Retour</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">onsynak</div>
+  <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#333;">Paris — Photographe</div>
+  <div class="footer-links">
+    <a href="https://instagram.com/onsynak" target="_blank">Instagram</a>
+    <a href="#" onclick="toggleMentions(event)">Mentions légales</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // PACKS DATA
+  const packs = [
+    { emoji:"★", name:"I'm the Star", tagline:"Mets-toi en lumière", tag:"Solo", desc:"Tu mérites d'être la star de ton propre film. Ce shooting solo capture qui tu es vraiment — libre, authentique, inoubliable.", duration:"1h30", lieu:"Paris & proche banlieue", brutes:"~100 photos HD", retouches:"5 photos", price:150, color:"#c9a84c", colorBg:"rgba(201,168,76,0.12)", colorText:"#c9a84c" },
+    { emoji:"♡", name:"In Love", tagline:"Votre histoire mérite d'être immortalisée", tag:"Couple", desc:"Rires complices, regards qui se croisent… Ce shooting capture la magie de votre histoire dans les plus beaux recoins de Paris.", duration:"1h30", lieu:"Paris", brutes:"~150 photos HD", retouches:"5 photos", price:200, color:"#e88fa0", colorBg:"rgba(232,143,160,0.12)", colorText:"#e88fa0" },
+    { emoji:"◎", name:"I'm Waiting For You", tagline:"Le plus beau des comptes à rebours", tag:"Grossesse", desc:"Ces 9 mois sont une parenthèse magique. Solo ou en couple, ce shooting immortalise cette attente si précieuse, en plein cœur de Paris.", duration:"1h30", lieu:"Paris", brutes:"~150 photos HD", retouches:"5 photos", price:150, color:"#a78bda", colorBg:"rgba(167,139,218,0.12)", colorText:"#a78bda" },
+    { emoji:"✿", name:"EVJF", tagline:"La dernière aventure avant le grand oui !", tag:"Groupe", desc:"Fous rires, complicité et souvenirs inoubliables. Ce shooting groupe immortalise cette journée unique avec toute la bande, en plein Paris.", duration:"2h00", lieu:"Paris", brutes:"~100 photos HD", retouches:"10 photos", price:250, color:"#e8a07a", colorBg:"rgba(232,160,122,0.12)", colorText:"#e8a07a" },
+    { emoji:"◇", name:"Angel", tagline:"Chaque sourire est une œuvre d'art", tag:"Enfant", desc:"Les enfants grandissent trop vite. Capturons leur spontanéité, leur joie pure et leurs petits instants de magie.", duration:"1h00", lieu:"Paris (ext. ou int.)", brutes:"~100 photos HD", retouches:"10 photos", price:250, color:"#6dbfb8", colorBg:"rgba(109,191,184,0.12)", colorText:"#6dbfb8" },
+    { emoji:"❋", name:"We Are Family", tagline:"Les moments ensemble sont les plus précieux", tag:"Famille", desc:"La famille, c'est votre plus belle équipe. Ce shooting en plein air capture votre complicité et vos sourires partagés pour toujours.", duration:"1h00", lieu:"Paris", brutes:"~100 photos HD", retouches:"5 photos", price:200, color:"#8abb6f", colorBg:"rgba(138,187,111,0.12)", colorText:"#8abb6f" },
+    { emoji:"◈", name:"Wedding Day Light", tagline:"Le début d'une vie à deux", tag:"Mariage", desc:"De la mairie aux rues de Paris — signature, famille réunie, shooting duo dans un cadre de rêve. Les moments spontanés de votre grand jour.", duration:"Demi-journée", lieu:"Paris & banlieue proche", brutes:"~300 photos HD", retouches:"20 photos", price:800, color:"#c9a84c", colorBg:"rgba(201,168,76,0.12)", colorText:"#c9a84c", includes:["Signature à la mairie","Photos spontanées famille","Shooting mariés en extérieur"] },
+    { emoji:"◈", name:"Wedding Day Full", tagline:"Chaque instant de votre plus beau jour", tag:"Mariage", desc:"Des préparatifs jusqu'aux dernières bulles — votre journée entière immortalisée avec soin, émotion et un œil artistique unique.", duration:"Journée complète", lieu:"Paris & banlieue proche", brutes:"~500 photos HD", retouches:"50 photos", price:1500, color:"#c9a84c", colorBg:"rgba(201,168,76,0.12)", colorText:"#c9a84c", featured:true, includes:["Préparatifs mariée / marié","Signature à la mairie","Photos spontanées famille","Shooting mariés en extérieur"] },
+  ];
+
+  const cats = ["Tous","Solo","Couple","Grossesse","Groupe","Enfant","Famille","Mariage"];
+  let active = "Tous";
+
+  function renderFilters() {
+    document.getElementById("filters").innerHTML = cats.map(c =>
+      `<button class="filter-btn${active===c?' active':''}" onclick="setFilter('${c}')">${c}</button>`
+    ).join("");
+  }
+
+  function renderGrid() {
+    const shown = active === "Tous" ? packs : packs.filter(p => p.tag === active);
+    document.getElementById("grid").innerHTML = shown.map(p => {
+      const incs = p.includes ? `<div class="card-includes">${p.includes.map(i=>`<div class="card-include"><div class="include-dot" style="background:${p.color}"></div><span>${i}</span></div>`).join("")}</div>` : "";
+      const featured = p.featured ? `<div class="featured-badge">Coup de cœur</div>` : "";
+      return `<div class="card" style="${p.featured?'border-color:rgba(201,168,76,0.4);':''}">
+        ${featured}
+        <div class="card-tag" style="background:${p.colorBg};color:${p.colorText};">${p.tag}</div>
+        <div class="card-name">${p.name}</div>
+        <div class="card-tagline" style="color:${p.color}">${p.tagline}</div>
+        <div class="card-desc">${p.desc}</div>
+        ${incs}
+        <div class="card-details">
+          <div><div class="detail-label">Durée</div><div class="detail-val">${p.duration}</div></div>
+          <div><div class="detail-label">Lieu</div><div class="detail-val">${p.lieu}</div></div>
+          <div><div class="detail-label">Photos brutes</div><div class="detail-val">${p.brutes}</div></div>
+          <div><div class="detail-label">Retouchées</div><div class="detail-val">${p.retouches}</div></div>
+        </div>
+        <div class="card-footer">
+          <div class="card-price">${p.price} €</div>
+          <button class="card-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Réserver →</button>
+        </div>
+      </div>`;
+    }).join("");
+  }
+
+  window.setFilter = function(cat) { active = cat; renderFilters(); renderGrid(); };
+  renderFilters(); renderGrid();
+
+  // FORM
+  const form = document.getElementById("contactForm");
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const res = await fetch(form.action, { method:"POST", body: data, headers:{ Accept:"application/json" } });
+    if (res.ok) {
+      form.style.display = "none";
+      document.getElementById("formSuccess").style.display = "block";
+    }
+  });
+
+  // MENTIONS
+  window.toggleMentions = function(e) {
+    e.preventDefault();
+    const m = document.getElementById("mentions");
+    m.classList.toggle("visible");
+    if (m.classList.contains("visible")) m.scrollIntoView({ behavior:"smooth" });
+  };
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
